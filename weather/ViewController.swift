@@ -45,9 +45,9 @@ class ViewController: UIViewController, NSURLConnectionDataDelegate{
         println("Downloading...")
         
         self.data.appendData(dataReceived)
-        
+        println("\(NSJSONSerialization.JSONObjectWithData(self.data, options: NSJSONReadingOptions.MutableContainers, error: nil))")
        // NSString(data: self.data, encoding: NSUTF8StringEncoding)
-        println("current data is \( NSString(data: self.data, encoding: NSUTF8StringEncoding))")
+       // println("current data is \( NSString(data: self.data, encoding: NSUTF8StringEncoding))")
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection!) {

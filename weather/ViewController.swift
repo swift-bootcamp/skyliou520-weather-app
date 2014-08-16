@@ -14,11 +14,14 @@ class ViewController: UIViewController {
     var api: String = ""
     
     @IBOutlet var city: UILabel!
+    @IBOutlet var rainImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.city.text = "I-Lan"
+        var image = UIImage(named: "cloud.rain.png");
+        self.rainImage.image = image;
         // Do any additional setup after loading the view, typically from a nib.
     }
 

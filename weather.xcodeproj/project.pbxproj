@@ -12,6 +12,7 @@
 		AE1B39DD199F223300E3AA32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1B39DB199F223300E3AA32 /* Main.storyboard */; };
 		AE1B39DF199F223300E3AA32 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE1B39DE199F223300E3AA32 /* Images.xcassets */; };
 		AE1B39EB199F223400E3AA32 /* weatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B39EA199F223400E3AA32 /* weatherTests.swift */; };
+		AEE5F9CE199F3027006B2853 /* cloud.rain.png in Resources */ = {isa = PBXBuildFile; fileRef = AEE5F9CD199F3027006B2853 /* cloud.rain.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		AE1B39E4199F223400E3AA32 /* weatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE1B39E9199F223400E3AA32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE1B39EA199F223400E3AA32 /* weatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherTests.swift; sourceTree = "<group>"; };
+		AEE5F9CD199F3027006B2853 /* cloud.rain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.rain.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		AE1B39D4199F223300E3AA32 /* weather */ = {
 			isa = PBXGroup;
 			children = (
+				AEE5F9CD199F3027006B2853 /* cloud.rain.png */,
 				AE1B39D7199F223300E3AA32 /* AppDelegate.swift */,
 				AE1B39D9199F223300E3AA32 /* ViewController.swift */,
 				AE1B39DB199F223300E3AA32 /* Main.storyboard */,
@@ -189,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE5F9CE199F3027006B2853 /* cloud.rain.png in Resources */,
 				AE1B39DD199F223300E3AA32 /* Main.storyboard in Resources */,
 				AE1B39DF199F223300E3AA32 /* Images.xcassets in Resources */,
 			);
@@ -397,6 +401,7 @@
 				AE1B39F0199F223400E3AA32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AE1B39F1199F223400E3AA32 /* Build configuration list for PBXNativeTarget "weatherTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +410,7 @@
 				AE1B39F3199F223400E3AA32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

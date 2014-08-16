@@ -20,8 +20,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         self.city.text = "I-Lan"
-        var image = UIImage(named: "cloud.rain.png");
+        var image = UIImage(named: "cloud.rain.png")
         self.rainImage.image = image;
+        
+        let background = UIImage(named: "oreo.jpg")
+        
+        self.view.backgroundColor = UIColor(patternImage: background)
         // Do any additional setup after loading the view, typically from a nib.
     }
 

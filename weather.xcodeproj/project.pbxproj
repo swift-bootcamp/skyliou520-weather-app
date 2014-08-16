@@ -13,6 +13,7 @@
 		AE1B39DF199F223300E3AA32 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE1B39DE199F223300E3AA32 /* Images.xcassets */; };
 		AE1B39EB199F223400E3AA32 /* weatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B39EA199F223400E3AA32 /* weatherTests.swift */; };
 		AEE5F9CE199F3027006B2853 /* cloud.rain.png in Resources */ = {isa = PBXBuildFile; fileRef = AEE5F9CD199F3027006B2853 /* cloud.rain.png */; };
+		AEE5F9D0199F33DC006B2853 /* oreo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEE5F9CF199F33DC006B2853 /* oreo.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		AE1B39E9199F223400E3AA32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE1B39EA199F223400E3AA32 /* weatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherTests.swift; sourceTree = "<group>"; };
 		AEE5F9CD199F3027006B2853 /* cloud.rain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.rain.png; sourceTree = "<group>"; };
+		AEE5F9CF199F33DC006B2853 /* oreo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oreo.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				AEE5F9CD199F3027006B2853 /* cloud.rain.png */,
+				AEE5F9CF199F33DC006B2853 /* oreo.jpg */,
 				AE1B39D7199F223300E3AA32 /* AppDelegate.swift */,
 				AE1B39D9199F223300E3AA32 /* ViewController.swift */,
 				AE1B39DB199F223300E3AA32 /* Main.storyboard */,
@@ -192,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE5F9D0199F33DC006B2853 /* oreo.jpg in Resources */,
 				AEE5F9CE199F3027006B2853 /* cloud.rain.png in Resources */,
 				AE1B39DD199F223300E3AA32 /* Main.storyboard in Resources */,
 				AE1B39DF199F223300E3AA32 /* Images.xcassets in Resources */,

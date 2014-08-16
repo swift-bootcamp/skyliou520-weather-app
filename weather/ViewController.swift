@@ -16,6 +16,7 @@ class ViewController: UIViewController, NSURLConnectionDataDelegate{
     @IBOutlet var city: UILabel!
     @IBOutlet var rainImage: UIImageView!
     
+    @IBOutlet var temperature: UILabel!
     var data: NSMutableData = NSMutableData()
     
     override func viewDidLoad() {
@@ -43,9 +44,21 @@ class ViewController: UIViewController, NSURLConnectionDataDelegate{
     
     func connection(connection: NSURLConnection!, didReceiveData dataReceived: NSData!) {
         println("Downloading...")
-        
+        var error: NSError?
         self.data.appendData(dataReceived)
-        println("\(NSJSONSerialization.JSONObjectWithData(self.data, options: NSJSONReadingOptions.MutableContainers, error: nil))")
+        //println("\(NSJSONSerialization.JSONObjectWithData(self.data, options: NSJSONReadingOptions.MutableContainers, error: nil))")
+        var jsonDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(self.data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+        
+        //println("\(jsonDictionary)")
+        let temp: AnyObject? = jsonDictionary["main"]?["temp"]?
+        
+        println("\(temp)")
+        
+        let weatherTempCelsius = Int(round((temp!.floatValue) - 273.15))
+        let weatherTempFahrenheit = Int(round((((temp!.floatValue) - 273.15) * 1.8) + 32 ))
+        
+        self.temperature.text =  "\(weatherTempFahrenheit)"
+        
        // NSString(data: self.data, encoding: NSUTF8StringEncoding)
        // println("current data is \( NSString(data: self.data, encoding: NSUTF8StringEncoding))")
     }

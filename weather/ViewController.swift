@@ -8,70 +8,94 @@
 
 import UIKit
 
-class ViewController: UIViewController, NSURLConnectionDataDelegate{
-
+class ViewController: UIViewController {
     
-    var api: String = ""
+    @IBOutlet weak var mCity: UILabel!
+    @IBOutlet weak var mCelsius: UILabel!
+    @IBOutlet weak var mFahrenheit: UILabel!
+    @IBOutlet weak var mImage: UIImageView!
     
-    @IBOutlet var city: UILabel!
-    @IBOutlet var rainImage: UIImageView!
-    
-    @IBOutlet var temperature: UILabel!
-    var data: NSMutableData = NSMutableData()
+    let cityName: String = "Taipei"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.city.text = "I-Lan"
-        var image = UIImage(named: "cloud.rain.png")
-        self.rainImage.image = image
-        
-        let background = UIImage(named: "oreo.jpg")
-        
-        self.view.backgroundColor = UIColor(patternImage: background)
-        
-        startConnection()
         // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    func startConnection(){
-        var restAPI: String = "http://api.openweathermap.org/data/2.5/weather?q=Taipei"
-        var url: NSURL = NSURL(string: restAPI)
-        var request: NSURLRequest = NSURLRequest(URL: url)
-        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: true)
-        println("start download")
-    }
-    
-    func connection(connection: NSURLConnection!, didReceiveData dataReceived: NSData!) {
-        println("Downloading...")
-        var error: NSError?
-        self.data.appendData(dataReceived)
-        //println("\(NSJSONSerialization.JSONObjectWithData(self.data, options: NSJSONReadingOptions.MutableContainers, error: nil))")
-        var jsonDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(self.data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
         
-        //println("\(jsonDictionary)")
-        let temp: AnyObject? = jsonDictionary["main"]?["temp"]?
+        self.mCity.text = self.cityName
+        //let background = UIImage(named: "IMG_0997.png")
         
-        println("\(temp)")
+        //self.view.backgroundColor = UIColor(patternImage: background)
         
-        let weatherTempCelsius = Int(round((temp!.floatValue) - 273.15))
-        let weatherTempFahrenheit = Int(round((((temp!.floatValue) - 273.15) * 1.8) + 32 ))
+        //touch the screen for download
+        self.view.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: "onTapHandler:"
+            )
+        )
         
-        self.temperature.text =  "\(weatherTempFahrenheit)"
-        
-       // NSString(data: self.data, encoding: NSUTF8StringEncoding)
-       // println("current data is \( NSString(data: self.data, encoding: NSUTF8StringEncoding))")
-    }
-    
-    func connectionDidFinishLoading(connection: NSURLConnection!) {
-        println("download finished")
+        getWeather()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
+    // onTap Handler
+    func onTapHandler (recognizer: UITapGestureRecognizer) {
+        self.mCelsius.text = "Celsius"
+        self.mFahrenheit.text = "Fahrenheit"
+        
+        getWeather()
+    }
+    
+    // Get Weather from open weather map API
+    func getWeather() {
+        NSURLConnection.sendAsynchronousRequest(
+            NSURLRequest(URL: NSURL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(self.cityName)")),
+            queue: NSOperationQueue.mainQueue(),
+            completionHandler: {(response, data, error) in
+                
+                // check error
+                if (error != nil) {
+                    println("Cannot get weather information from server.")
+                    return
+                }
+                
+                // JSON Parse
+                var jsonDictionaray: NSDictionary = NSJSONSerialization.JSONObjectWithData(
+                    data,
+                    options: NSJSONReadingOptions.MutableContainers,
+                    error: nil) as NSDictionary
+                
+                println(jsonDictionaray)
+                
+                // get temperature
+                let temp: AnyObject? = jsonDictionaray["main"]?["temp"]?
+                
+                let absolute_zero: Float = 273.15
+                
+                // convert to Celsius and Fahrenheit
+                let celsiusTemp    = Int(round(temp!.floatValue - absolute_zero))
+                let fahrenheitTemp = celsiusTemp * (9/5) + 32
+                
+                // set Text View
+                self.mCelsius.text = "\(celsiusTemp) ℃"
+                self.mFahrenheit.text = "\(fahrenheitTemp) ℉"
+                
+                // get weather ID & icon
+                if let weather = jsonDictionaray["weather"]? as? NSArray {
+                    let weatherDictionary = weather[0]? as NSDictionary
+                    let weatherId = weatherDictionary["id"] as Int
+                    println("weather ID: \(weatherId)")
+                    
+                    // show the icon on the screen
+                    let weatherIcon = weatherDictionary["icon"] as String
+                    println("weather icon: \(weatherIcon)")
+                    self.mImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string:"http://openweathermap.org/img/w/\(weatherIcon).png")))
+                }
+        })
+    }
 }
-
